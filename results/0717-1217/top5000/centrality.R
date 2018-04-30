@@ -1,0 +1,17 @@
+library(igraph)
+nodes <- read.csv("nodes.csv", header=T, as.is=T)
+links <- read.csv("network_index.csv", header=T, as.is=T)
+net <- graph_from_data_frame(d=links, vertices=nodes, directed=T)
+sink("degree.txt")
+degree(net)
+sink()
+sink("closeness.txt")
+closeness(net)
+sink()
+sink("eigen_centrality.txt")
+eigen_centrality(net)$vector
+sink()
+sink("betweenness.txt")
+betweenness(net)
+sink()
+
